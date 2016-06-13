@@ -11,6 +11,8 @@ import Foundation
 class CalculatorBrain {
     private var accumulator = 0.0
     private var description = ""
+    private var isPartialOperation = false
+    
     func setOperand(operand: Double) {
         accumulator = operand
     }
@@ -41,18 +43,20 @@ class CalculatorBrain {
             switch operation {
             case .Constant(let value):
                 accumulator = value
-                addToDescription(symbol)
+                addToDescription(symbol, writing: false)
             case .UnaryOperation(let function):
                 accumulator = function(accumulator)
-                addToDescription(symbol)
+                addToDescription(symbol, writing: false)
             case .BinaryOperation(let function):
                 execPendingOperation()
                 pending = PendingBinaryInfo(binaryFunctionInfo: function, firstOperand: accumulator)
-                addToDescription(symbol)
+                addToDescription(symbol, writing: false)
             case  .Equals:
                 execPendingOperation()
+                resetDescription()
             case .Clear:
                 accumulator = 0
+                resetDescription()
             }
         }
 
@@ -64,6 +68,10 @@ class CalculatorBrain {
         if pending != nil {
             accumulator = pending!.binaryFunctionInfo(pending!.firstOperand, accumulator)
             pending = nil
+            isPartialOperation = false
+        }
+        else {
+            isPartialOperation = true
         }
     }
     private struct PendingBinaryInfo {
@@ -77,12 +85,16 @@ class CalculatorBrain {
         }
     }
     
-    func addToDescription(let part: String) {
-        if (description.characters.count != 0) {
+    func addToDescription(let part: String, let writing: Bool) {
+        if (description.characters.count != 0 && !writing) {
             description += " "
         }
         description += part
         print(description)
+    }
+    
+    private func resetDescription() {
+        description = ""
     }
     
     

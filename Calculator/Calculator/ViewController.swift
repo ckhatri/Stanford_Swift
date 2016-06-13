@@ -19,11 +19,11 @@ class ViewController: UIViewController {
         if userIsInTheMiddleOfTyping {
             let currentTextInDisplay = display.text!
             display.text = currentTextInDisplay + digit
-            brain.addToDescription(digit)
+            brain.addToDescription(digit, writing: userIsInTheMiddleOfTyping)
         }
         else {
             display.text = digit
-            brain.addToDescription(digit)
+            brain.addToDescription(digit, writing: userIsInTheMiddleOfTyping)
         }
         userIsInTheMiddleOfTyping = true
         
