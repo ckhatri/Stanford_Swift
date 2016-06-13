@@ -51,6 +51,7 @@ class ViewController: UIViewController {
             brain.performOperation(mathematicalSymbol)
         }
         displayValue = brain.result
+        sequence.text = brain.getSequence()
     }
 }
 

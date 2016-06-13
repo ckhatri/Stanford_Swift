@@ -11,6 +11,8 @@ import Foundation
 class CalculatorBrain {
     private var accumulator = 0.0
     private var description = ""
+    private var isPartialOperation = false
+    
     func setOperand(operand: Double) {
         accumulator = operand
     }
@@ -43,15 +45,33 @@ class CalculatorBrain {
                 accumulator = value
                 updateDescription(symbol)
             case .UnaryOperation(let function):
-                updateDescription(symbol + String(accumulator))
+                if isPartialOperation {
+                    updateDescription(symbol + "(" + String(accumulator) + ")")
+                    isPartialOperation = false
+                }
+                else {
+                    setDescription(symbol + "(" + description + ")")
+                }
                 accumulator = function(accumulator)
             case .BinaryOperation(let function):
+                if (description.characters.count == 0) {
+                    updateDescription(String(accumulator) + " " + symbol)
+                }
+                else if isPartialOperation {
+                    updateDescription(String(accumulator) + " " + symbol)
+                }
+                else {
+                    updateDescription(symbol)
+                }
                 execPendingOperation()
                 pending = PendingBinaryInfo(binaryFunctionInfo: function, firstOperand: accumulator)
-                updateDescription(String(pending!.firstOperand) + " " + symbol)
+                isPartialOperation = true
             case  .Equals:
-                updateDescription(String(accumulator))
+                if isPartialOperation {
+                    updateDescription(String(accumulator))
+                }
                 execPendingOperation()
+                isPartialOperation = false
             case .Clear:
                 accumulator = 0
             }
@@ -78,15 +98,23 @@ class CalculatorBrain {
         }
     }
     
-    func updateDescription(val: String) {
+    private func updateDescription(val: String) {
         if description.characters.count != 0 {
             description += " "
         }
         description += val
-        print(description)
     }
     
-    func getDescription() {
-        print(description)
+    private func setDescription(val: String) {
+        description = val
+    }
+    
+    func getSequence() -> String {
+        if (isPartialOperation) {
+            return description + " ..."
+        }
+        else {
+            return description + " ="
+        }
     }
 }
