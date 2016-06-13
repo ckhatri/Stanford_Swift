@@ -12,6 +12,8 @@ class ViewController: UIViewController {
 
     @IBOutlet private weak var display: UILabel!
     
+    @IBOutlet weak var sequence: UILabel!
+    
     var userIsInTheMiddleOfTyping = false
     
     @IBAction private func touchDigit(sender: UIButton) {
@@ -19,11 +21,9 @@ class ViewController: UIViewController {
         if userIsInTheMiddleOfTyping {
             let currentTextInDisplay = display.text!
             display.text = currentTextInDisplay + digit
-            brain.addToDescription(digit, writing: userIsInTheMiddleOfTyping)
         }
         else {
             display.text = digit
-            brain.addToDescription(digit, writing: userIsInTheMiddleOfTyping)
         }
         userIsInTheMiddleOfTyping = true
         
