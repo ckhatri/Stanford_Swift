@@ -46,8 +46,8 @@ class ViewController: UIViewController {
             brain.setOperand(displayValue)
             userIsInTheMiddleOfTyping = false
         }
-        
         if let mathematicalSymbol = sender.currentTitle {
+
             brain.performOperation(mathematicalSymbol)
         }
         displayValue = brain.result

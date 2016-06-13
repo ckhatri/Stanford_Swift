@@ -10,7 +10,7 @@ import Foundation
 
 class CalculatorBrain {
     private var accumulator = 0.0
-    
+    private var description = ""
     func setOperand(operand: Double) {
         accumulator = operand
     }
@@ -41,12 +41,16 @@ class CalculatorBrain {
             switch operation {
             case .Constant(let value):
                 accumulator = value
+                updateDescription(symbol)
             case .UnaryOperation(let function):
+                updateDescription(symbol + String(accumulator))
                 accumulator = function(accumulator)
             case .BinaryOperation(let function):
                 execPendingOperation()
                 pending = PendingBinaryInfo(binaryFunctionInfo: function, firstOperand: accumulator)
+                updateDescription(String(pending!.firstOperand) + " " + symbol)
             case  .Equals:
+                updateDescription(String(accumulator))
                 execPendingOperation()
             case .Clear:
                 accumulator = 0
@@ -72,5 +76,17 @@ class CalculatorBrain {
         get {
             return accumulator
         }
+    }
+    
+    func updateDescription(val: String) {
+        if description.characters.count != 0 {
+            description += " "
+        }
+        description += val
+        print(description)
+    }
+    
+    func getDescription() {
+        print(description)
     }
 }
