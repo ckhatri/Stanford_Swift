@@ -9,13 +9,18 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    //displayed value in calculator
     @IBOutlet private weak var display: UILabel!
     
+    //sequence leading to the current result
     @IBOutlet weak var sequence: UILabel!
     
+    //are they done writing a number?
     var userIsInTheMiddleOfTyping = false
     
+    /* Everytime a user touches a digit, get that digit from the sender
+        and update the display  */
     @IBAction private func touchDigit(sender: UIButton) {
         let digit = sender.currentTitle!
         if userIsInTheMiddleOfTyping {
@@ -41,6 +46,8 @@ class ViewController: UIViewController {
     
     private var brain = CalculatorBrain()
     
+    //get the value to perform the operation on, and the symbol.
+    //update the displayed value and sequence
     @IBAction private func performOperation(sender: UIButton) {
         if userIsInTheMiddleOfTyping {
             brain.setOperand(displayValue)
