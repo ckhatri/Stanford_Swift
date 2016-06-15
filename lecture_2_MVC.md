@@ -30,4 +30,3 @@
 * done through get and set functions
 * we don't store this variable, we simple calculate it.
 
-
