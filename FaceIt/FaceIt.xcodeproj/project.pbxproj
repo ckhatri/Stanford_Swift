@@ -12,6 +12,7 @@
 		4E7460D91D118EEB00CD10C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E7460D71D118EEB00CD10C9 /* Main.storyboard */; };
 		4E7460DB1D118EEB00CD10C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E7460DA1D118EEB00CD10C9 /* Assets.xcassets */; };
 		4E7460DE1D118EEB00CD10C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E7460DC1D118EEB00CD10C9 /* LaunchScreen.storyboard */; };
+		4E7460E71D11927F00CD10C9 /* FaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7460E61D11927F00CD10C9 /* FaceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		4E7460DA1D118EEB00CD10C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E7460DD1D118EEB00CD10C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E7460DF1D118EEB00CD10C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E7460E61D11927F00CD10C9 /* FaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				4E7460E51D118F1200CD10C9 /* SupportingFiles */,
 				4E7460D51D118EEB00CD10C9 /* ViewController.swift */,
+				4E7460E61D11927F00CD10C9 /* FaceView.swift */,
 				4E7460D71D118EEB00CD10C9 /* Main.storyboard */,
 			);
 			path = FaceIt;
@@ -145,6 +148,7 @@
 			files = (
 				4E7460D61D118EEB00CD10C9 /* ViewController.swift in Sources */,
 				4E7460D41D118EEB00CD10C9 /* AppDelegate.swift in Sources */,
+				4E7460E71D11927F00CD10C9 /* FaceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +298,7 @@
 				4E7460E41D118EEB00CD10C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
