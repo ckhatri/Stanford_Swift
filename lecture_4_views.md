@@ -24,4 +24,4 @@
 	* do setNeedsDisplay()
 	* setNeedsDisplayInRect()
 * UIBezierPath is good for drawing
-* 
+  
